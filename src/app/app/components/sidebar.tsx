@@ -2,33 +2,43 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
+import Logo from '../assets/logo.png'
 
 export function Sidebar() {
   const pathname = usePathname()
 
+  const register =
+    '/app/patientregistration' || '/app/patientregistration/register'
+
   return (
     <aside
       id="sidebar-multi-level-sidebar"
-      className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+      className="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0"
       aria-label="Sidebar"
     >
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-blue-950">
+      <div className="h-full px-3 py-10 overflow-y-auto bg-gray-50 dark:bg-blue-950">
         <ul className="space-y-2 font-medium">
           <li className="flex justify-center mb-8">
             <Link href="/app" className="uppercase text-lg text-white">
-              Lexorama
+              <Image
+                src={Logo}
+                width={135}
+                height={135}
+                alt="Picture of the author"
+              />
             </Link>
           </li>
           <li>
             <Link
               href="/app"
-              className={`flex items-center py-3 px-3 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600 ${
+              className={`flex items-center py-3 px-6 rounded-lg text-white hover:bg-slate-500 ${
                 pathname === '/app' ? 'bg-slate-600' : ''
               }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-6 h-6  transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="#fff"
                 viewBox="0 0 256 256"
               >
@@ -40,13 +50,13 @@ export function Sidebar() {
           <li>
             <Link
               href="/app/patientregistration"
-              className={`flex items-center py-3 px-3 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600 ${
-                pathname === '/app/patientregistration' ? 'bg-slate-600' : ''
+              className={`flex items-center py-3 px-6 rounded-lg text-white hover:bg-slate-500 ${
+                pathname === register ? 'bg-slate-600' : ''
               }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-6 h-6  transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 fill="#fff"
                 viewBox="0 0 256 256"
               >
