@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Sidebar } from './components/sidebar'
+import { ToastContainer } from 'react-toastify'
 
 interface AuthLayoutProps {
   children: ReactNode
@@ -13,9 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }: AuthLayoutProps) {
   return (
     <div>
-      <div>
-        <Sidebar />
-      </div>
+      <ToastContainer />
+      <Sidebar />
       <div className="ml-72 p-6">{children}</div>
     </div>
   )

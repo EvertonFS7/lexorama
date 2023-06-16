@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface BreadcumpProps {
   descriptionPreviousPage?: string
@@ -9,12 +12,14 @@ export function Breadcump({
   descriptionPreviousPage,
   descriptionCurrentPage,
 }: BreadcumpProps) {
+  const router = useRouter()
+
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         <li className="inline-flex items-center">
           <Link
-            href="#"
+            href="/app"
             className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-900 "
           >
             <svg
@@ -30,7 +35,7 @@ export function Breadcump({
           </Link>
         </li>
         {descriptionPreviousPage && (
-          <li>
+          <li onClick={() => router.back()}>
             <div className="flex items-center">
               <svg
                 aria-hidden="true"

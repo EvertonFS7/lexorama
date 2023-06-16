@@ -8,8 +8,13 @@ import { Button } from '../../components/button'
 import { PatientRegistrationFormData } from '../@types/PatientRegistration'
 import { PatientRegistrationFormSchema } from '../validations/PatientRegistrationSchema'
 import { Breadcump } from '../../components/breadcump'
+import useToast from '../../hooks/useToast'
+import { useRouter } from 'next/navigation'
 
 export default function PatientRegistration() {
+  const { showToast } = useToast()
+  const router = useRouter()
+
   const {
     handleSubmit,
     control,
@@ -20,13 +25,19 @@ export default function PatientRegistration() {
 
   async function handlePatientRegistration(data: PatientRegistrationFormData) {
     try {
-      await fetch('http://localhost:3000/patientRegister', {
+      await fetch('http://localhost:3001/patientRegister', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
+      showToast('Paciente cadastrado com sucesso!', {
+        type: 'success',
+        autoClose: 3000,
+      })
+      router.back()
+      router.refresh()
     } catch (error) {
       console.log(error)
     }
