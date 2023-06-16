@@ -6,11 +6,7 @@ export default function Games() {
   return (
     <div className="space-y-6">
       <Breadcump descriptionCurrentPage="Cadastro de Pacientes" />
-      <div className="flex justify-end">
-        <Link href="patientregistration/register">
-          <Button title="Cadastrar Paciente" />
-        </Link>
-      </div>
+   
     </div>
   )
 }

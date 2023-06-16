@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { Card } from '../../components/card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormTextField } from '../../components/textfield'
@@ -21,6 +21,11 @@ export default function PatientRegistration() {
     formState: { errors },
   } = useForm<PatientRegistrationFormData>({
     resolver: zodResolver(PatientRegistrationFormSchema),
+  })
+
+  const { append, fields, remove } = useFieldArray<any>({
+    control,
+    name: 'learning_disability',
   })
 
   async function handlePatientRegistration(data: PatientRegistrationFormData) {
@@ -87,6 +92,39 @@ export default function PatientRegistration() {
                   name="patient_gender"
                 />
               </div>
+            </div>
+            {fields.map((field, index) => {
+              return (
+                <div key={field.id}>
+                  <FormTextField
+                    control={control}
+                    errors={errors}
+                    label="Transtorno"
+                    name={`learning_disability.${field.id}.disorder`}
+                  />
+                  <div className="mt-2 flex justify-end">
+                    <button
+                      onClick={() => remove(index)}
+                      type="button"
+                      className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4
+                 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 
+                  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+            <div className="mt-2 flex justify-end">
+              <Button
+                title="Adicionar transtorno"
+                onClick={() =>
+                  append({
+                    disorder: '',
+                  })
+                }
+              />
             </div>
           </div>
         </Card>

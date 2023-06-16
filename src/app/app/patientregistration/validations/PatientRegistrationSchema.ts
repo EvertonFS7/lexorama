@@ -26,4 +26,5 @@ export const PatientRegistrationFormSchema = z.object({
   responsible_gender: z.string(),
   Degree_kinship_responsible: z.string(),
   responsible_phone: z.string(),
+  learning_disability: z.any(),
 })
